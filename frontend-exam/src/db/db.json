@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "johndoe@example.com",
+      "password": "hashedpassword123",
+      "accountInfo": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "jobTitle": "Product Manager"
+      },
+      "keywords": {
+        "main": [
+          "artificial intelligence",
+          "machine learning",
+          "data science"
+        ],
+        "additional": [
+          "startup",
+          "innovation",
+          "technology"
+        ],
+        "excluded": [
+          "finance",
+          "marketing"
+        ]
+      },
+      "sources": {
+        "twitter": [
+          "https://twitter.com/johndoe"
+        ],
+        "facebook": [
+          "https://facebook.com/johndoe"
+        ],
+        "reddit": [
+          "https://reddit.com/user/johndoe"
+        ],
+        "youtube": [
+          "https://youtube.com/johndoe"
+        ],
+        "publishers": [
+          {
+            "website": "https://techcrunch.com",
+            "name": "TechCrunch"
+          },
+          {
+            "website": "https://wired.com",
+            "name": "Wired"
+          }
+        ]
+      },
+      "onboardingStatus": "complete"
+    },
+    {
+      "id": "2",
+      "email": "janedoe@example.com",
+      "password": "hashedpassword456",
+      "accountInfo": {},
+      "keywords": {},
+      "sources": {},
+      "onboardingStatus": "incomplete"
+    }
+  ]
+}
