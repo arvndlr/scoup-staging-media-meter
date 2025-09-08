@@ -1,6 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const Input = ({ label, type = 'text', required = false, className, ...props }) => {
+const Input = ({
+  label,
+  type = "text",
+  required = false,
+  className,
+  ...props
+}) => {
   return (
     <div className="w-full">
       {label && (
