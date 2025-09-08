@@ -7,8 +7,9 @@ import UserIcon from "../../assets/icons/user.svg?react";
 import HashtagIcon from "../../assets/icons/hashtag.svg?react";
 import AtSymbolIcon from "../../assets/icons/at-symbol.svg?react";
 import DocumentIcon from "../../assets/icons/document-text.svg?react";
-import CheckCircleIcon from "../../assets/icons/check-circle.svg?react";
+import CheckCircleIcon from "../../assets/icons/check.svg?react";
 import LogoHover from "../../assets/icons/scoup-logo.svg";
+import PublisherIcon from "../../assets/icons/publisher.svg?react";
 
 const OnboardingSteps = () => {
   const location = useLocation();
@@ -39,8 +40,8 @@ const OnboardingSteps = () => {
     { name: "Account", path: "account-info", icon: UserIcon },
     { name: "Keywords", path: "keywords", icon: HashtagIcon },
     { name: "Sources", path: "sources", icon: AtSymbolIcon },
-    { name: "Publishers", path: "publishers", icon: DocumentIcon },
-    { name: "Review", path: "review", icon: CheckCircleIcon },
+    { name: "Publishers", path: "publishers", icon: PublisherIcon },
+    { name: "Review", path: "review", icon: DocumentIcon  },
   ];
 
   return (
@@ -62,7 +63,7 @@ const OnboardingSteps = () => {
                   w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center
                   ${
                     isComplete
-                      ? "bg-green-500 text-white"
+                      ? "bg-white-900 text-white-900"
                       : isActive
                       ? "bg-gray-200 text-white"
                       : "bg-white-200 text-gray-500"

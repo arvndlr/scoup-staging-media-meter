@@ -7,87 +7,78 @@ import OnboardingLayout from "../../components/layout/OnboardingLayout";
 import KeywordsTagInput from "../../components/features/KeywordsTagInput";
 
 const KeywordsPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    // State for each list of keywords
-    const [mainKeywords, setMainKeywords] = useState([]);
-    const [additionalKeywords, setAdditionalKeywords] = useState([]);
-    const [excludedKeywords, setExcludedKeywords] = useState([]);
+  // State for each list of keywords
+  const [mainKeywords, setMainKeywords] = useState([]);
+  const [additionalKeywords, setAdditionalKeywords] = useState([]);
+  const [excludedKeywords, setExcludedKeywords] = useState([]);
 
-    const handleComplete = () => {
-        const allKeywords = {
-            main: mainKeywords,
-            additional: additionalKeywords,
-            excluded: excludedKeywords,
-        };
-        console.log("Final Keywords:", allKeywords);
-        navigate("/onboarding/sources");
+  const handleComplete = () => {
+    const allKeywords = {
+      main: mainKeywords,
+      additional: additionalKeywords,
+      excluded: excludedKeywords,
     };
+    console.log("Final Keywords:", allKeywords);
+    navigate("/onboarding/sources");
+  };
 
-    return (
-        <OnboardingLayout>
-            <div className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md space-y-6">
-                
-                {/* Header Section (Title and Button) */}
-                <div className="flex justify-between items-center mb-4">
-                    <div>
-                        <h2 className="text-xl font-bold">Keywords</h2>
-                        <p className="text-sm text-gray-600">
-                            Setup the keywords needed for the content
-                        </p>
-                    </div>
-                    <Button
-                        type="button"
-                        onClick={handleComplete}
-                        className="bg-gray-200 text-gray-800 hover:bg-gray-300"
-                    >
-                        Complete
-                    </Button>
-                </div>
-                
-                
-                
-                {/* Main Keywords Section */}
-                <div>
-                    <h3 className="text-lg font-semibold mb-2">Main Keywords</h3>
-                    <p className="text-sm text-gray-500 mb-2">
-                        Add main keywords here and press enter
-                    </p>
-                    <KeywordsTagInput 
-                        keywords={mainKeywords} 
-                        setKeywords={setMainKeywords} 
-                        tagColor="blue" 
-                    />
-                </div>
+  return (
+    <OnboardingLayout>
+      <div className="p-4 flex-1 flex flex-col items-center justify-center">
+        {/* Header Section (Title and Button) */}
+        <div className="w-3xl flex justify-between items-center mb-2">
+          <div >
+            <h2 className="text-xl font-bold">Keywords</h2>
+            <p className="text-sm text-gray-600">
+              Setup the keywords needed for the content
+            </p>
+          </div>
+          <Button
+            type="button"
+            onClick={handleComplete}
+            className="bg-gray-200 text-white-800 max-w-30 hover:bg-[#141413]"
+          >
+            Complete
+          </Button>
+        </div>
+      </div>
 
-                {/* Additional Keywords Section */}
-                <div>
-                    <h3 className="text-lg font-semibold mb-2">Additional Keywords</h3>
-                    <p className="text-sm text-gray-500 mb-2">
-                        Add additional keywords here and press enter
-                    </p>
-                    <KeywordsTagInput 
-                        keywords={additionalKeywords} 
-                        setKeywords={setAdditionalKeywords} 
-                        tagColor="green" 
-                    />
-                </div>
+      <div className="max-w-3xl h-150 min-h-3xl mx-auto bg-white p-6 pb-8 rounded-3xl shadow-md space-y-6">
+        <span className="text-sm">Keywords Preview</span>
+        {/* Main Keywords Section */}
+        <div className="px-10 mt-8 mb-8">    
+          <h3 className="text-md font-semibold">Main Keywords</h3>
+          <KeywordsTagInput
+            keywords={mainKeywords}
+            setKeywords={setMainKeywords}
+            tagColor="blue"
+          />
+        </div>
 
-                {/* Excluded Keywords Section */}
-                <div>
-                    <h3 className="text-lg font-semibold mb-2">Excluded Keywords</h3>
-                    <p className="text-sm text-gray-500 mb-2">
-                        Add excluded keywords here and press enter
-                    </p>
-                    <KeywordsTagInput 
-                        keywords={excludedKeywords} 
-                        setKeywords={setExcludedKeywords} 
-                        tagColor="red" 
-                    />
-                </div>
-            </div>
-        </OnboardingLayout>
-    );
+        {/* Additional Keywords Section */}
+        <div className="px-10 mb-8">
+          <h3 className="text-md font-semibold">Additional Keywords</h3>
+          <KeywordsTagInput
+            keywords={additionalKeywords}
+            setKeywords={setAdditionalKeywords}
+            tagColor="green"
+          />
+        </div>
+
+        {/* Excluded Keywords Section */}
+        <div className="px-10 mb-8">
+          <h3 className="text-md font-semibold">Excluded Keywords</h3>
+          <KeywordsTagInput
+            keywords={excludedKeywords}
+            setKeywords={setExcludedKeywords}
+            tagColor="red"
+          />
+        </div>
+      </div>
+    </OnboardingLayout>
+  );
 };
 
 export default KeywordsPage;
