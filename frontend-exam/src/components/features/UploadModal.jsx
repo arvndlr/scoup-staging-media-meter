@@ -1,101 +1,172 @@
-// src/components/features/UploadModal.jsx
-
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Modal from "../common/Modal";
-import { IconCloudUpload } from "@tabler/icons-react";
-const UploadModal = ({ isOpen, onClose, onUpload, status }) => {
-  const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState("");
-  const [hasFile, setHasFile] = useState(false);
+import {
+  IconCloudUpload,
+  IconFile,
+  IconCheck,
+  IconX,
+} from "@tabler/icons-react";
 
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      setFileSize((file.size / 1024).toFixed(2) + " KB");
-      setHasFile(true);
+const MAX_BYTES = 10 * 1024 * 1024; // 10MB
 
-      // Pass the file object directly to the parent's onUpload handler
-      onUpload(file);
+/**
+ * Props:
+ * - isOpen: boolean
+ * - onClose: () => void
+ * - onUpload: (file: File) => void          // triggers parsing + progress
+ * - onImport: () => void                    // commits pending data to table
+ * - onReset?: () => void                    // optional: resets upload state in parent
+ * - status: number                          // 0..100
+ * - error?: string
+ */
+const UploadModal = ({
+  isOpen,
+  onClose,
+  onUpload,
+  onImport,
+  onReset,
+  status,
+  error,
+}) => {
+  const inputRef = useRef(null);
+  const [file, setFile] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const isUploading = status > 0 && status < 100;
+  const isUploadComplete = status === 100;
+
+  const accept = ".csv,.xls,.xlsx";
+
+  const pickFile = () => inputRef.current?.click();
+
+  const useFile = (f) => {
+    if (!f) return;
+    if (f.size > MAX_BYTES) {
+      alert("File too large. Max 10MB.");
+      return;
     }
+    setFile({
+      name: f.name,
+      sizeKb: (f.size / 1024).toFixed(2) + " KB",
+      raw: f,
+    });
+    onUpload?.(f);
   };
 
-  // ... rest of the component remains the same
+  const onChange = (e) => useFile(e.target.files?.[0]);
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    useFile(e.dataTransfer.files?.[0]);
+  };
+
+  const clearFile = () => {
+    setFile(null);
+    // Optionally reset parent-side state so IMPORT becomes disabled again
+    onReset?.();
+  };
+
+  const handleCancel = () => {
+    // Reset parent-side state and close
+    onReset?.();
+    onClose?.();
+  };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={handleCancel}>
       <div className="w-full max-w-md p-6 bg-[#f5f4ed] rounded-2xl">
-        <h2 className="text-xl font-semibold mb-6">Import CSV/Excel File</h2>
+        <h2 className="text-xl font-semibold mb-4">Import CSV/Excel File</h2>
 
-        {/* Always visible upload area with optional file input */}
-        <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg px-10 py-6 text-center bg-[#ffffff]">
+        {/* Always-visible drop zone */}
+        <div
+          onClick={pickFile}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={onDrop}
+          className={`flex flex-col items-center justify-center border-2 border-dashed rounded-lg px-10 py-6 text-center bg-white transition
+            ${isDragging ? "border-gray-500" : "border-gray-300"}`}
+        >
           <IconCloudUpload stroke={1} className="h-10 w-10" />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <p className="text-sm text-gray-500">
-              <span className="font-semibold text-gray-800">
-                Click to import
-              </span>{" "}
-              or drag and drop
-              <br />
-              Excel (.xls, .xlsx) or CSV (.csv) files (max. 10MB)
-            </p>
-            <input
-              id="file-upload"
-              type="file"
-              className="hidden"
-              onChange={handleFileSelect}
-            />
-          </label>
+          <p className="mt-2 text-sm text-gray-500">
+            <span className="font-semibold text-gray-800">Click to import</span>{" "}
+            or drag and drop
+            <br />
+            Excel (.xls, .xlsx) or CSV (.csv) files (max. 10MB)
+          </p>
+          <input
+            ref={inputRef}
+            id="file-upload"
+            type="file"
+            accept={accept}
+            className="hidden"
+            onChange={onChange}
+          />
         </div>
 
-        {hasFile && (
-          <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-md flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6 text-green-500"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-                  clipRule="evenodd"
+        {/* Uploading pill */}
+        {isUploading && file && (
+          <div className="mt-4 ">
+            <div className="relative  rounded-md bg-blue-100 border border-blue-600 px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex justify-center items-center bg-blue-400 rounded-full h-6 w-6">
+                  <IconCloudUpload className="w-4 h-4 text-gray-100" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-800 truncate">
+                    {file.name}
+                  </p>
+                  <p className="text-xs text-gray-500">{file.sizeKb}</p>
+                </div>
+                <p className="text-xs text-gray-600 font-semibold">{status}%</p>
+              </div>
+              <div className="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-300"
+                  style={{ width: `${Math.max(5, status)}%` }}
                 />
-              </svg>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Uploaded success pill */}
+        {isUploadComplete && file && (
+          <div className="mt-4 p-4 bg-green-100 border border-green-600 rounded-md flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="flex justify-center items-center bg-green-400 rounded-full h-6 w-6">
+                {" "}
+                <IconCheck className="w-4 h-4 text-white" />
+              </div>
+
               <div>
-                <p className="font-medium text-sm text-gray-800">{fileName}</p>
-                <p className="text-xs text-gray-500">{fileSize}</p>
+                <p className="font-medium text-sm text-gray-800">{file.name}</p>
+                <p className="text-xs text-gray-500">{file.sizeKb}</p>
               </div>
             </div>
             <button
-              onClick={() => setHasFile(false)}
+              onClick={clearFile}
               className="p-1 rounded-full text-gray-400 hover:bg-gray-200"
+              aria-label="Remove file"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <IconX className="w-4 h-4" />
             </button>
           </div>
         )}
 
-        <div className=" text-center mt-2">
+        {/* Error */}
+        {!!error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+
+        {/* Help links */}
+        <div className="text-center mt-3">
           <ul className="list-disc pl-5 text-blue-500">
             <li>
               <a
                 href="#"
-                className="text-sm text-blue-500 hover:underline block text-start list-disc"
+                className="text-sm text-blue-500 hover:underline block text-start"
               >
                 Download a sample .xls template
               </a>
@@ -111,19 +182,18 @@ const UploadModal = ({ isOpen, onClose, onUpload, status }) => {
           </ul>
         </div>
 
-        <div className="flex justify-end space-x-3 mt-2">
+        {/* Footer actions */}
+        <div className="flex justify-end space-x-3 mt-3">
           <button
-            onClick={onClose}
+            onClick={handleCancel}
             className="px-4 py-2 text-sm font-medium text-gray-700 border rounded-md hover:bg-gray-100"
           >
             CANCEL
           </button>
           <button
-            onClick={() => {
-              /* Handle import action */
-            }}
+            onClick={onImport}
             className="px-4 py-2 text-sm font-medium text-white bg-[#121212] rounded-md disabled:opacity-50"
-            disabled={!hasFile}
+            disabled={!isUploadComplete}
           >
             IMPORT
           </button>

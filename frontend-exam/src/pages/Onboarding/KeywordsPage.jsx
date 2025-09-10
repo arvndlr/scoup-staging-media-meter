@@ -1,35 +1,32 @@
-// src/pages/Onboarding/KeywordsPage.jsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/common/Button";
 import OnboardingLayout from "../../components/layout/OnboardingLayout";
 import KeywordsTagInput from "../../components/features/KeywordsTagInput";
+import { useOnboardingStore } from "../../state/onboardingStore";
 
 const KeywordsPage = () => {
   const navigate = useNavigate();
+  const setKeywords = useOnboardingStore((s) => s.setKeywords);
 
-  // State for each list of keywords
   const [mainKeywords, setMainKeywords] = useState([]);
   const [additionalKeywords, setAdditionalKeywords] = useState([]);
   const [excludedKeywords, setExcludedKeywords] = useState([]);
 
   const handleComplete = () => {
-    const allKeywords = {
+    setKeywords({
       main: mainKeywords,
       additional: additionalKeywords,
       excluded: excludedKeywords,
-    };
-    console.log("Final Keywords:", allKeywords);
+    });
     navigate("/onboarding/sources");
   };
 
   return (
     <OnboardingLayout>
-      <div className="p-4 flex-1 flex flex-col items-center justify-center">
-        {/* Header Section (Title and Button) */}
+      <div className="p-4 flex-1 flex flex-col items-center justify-center archivo">
         <div className="w-3xl flex justify-between items-center mb-2">
-          <div >
+          <div>
             <h2 className="text-xl font-bold">Keywords</h2>
             <p className="text-sm text-gray-600">
               Setup the keywords needed for the content
@@ -46,9 +43,9 @@ const KeywordsPage = () => {
       </div>
 
       <div className="max-w-3xl h-150 min-h-3xl mx-auto bg-white p-6 pb-8 rounded-3xl shadow-md space-y-6">
-        <span className="text-sm">Keywords Preview</span>
-        {/* Main Keywords Section */}
-        <div className="px-10 mt-8 mb-8">    
+        <span className="text-md">Keywords Preview</span>
+
+        <div className="px-10 mt-8 mb-8">
           <h3 className="text-md font-semibold">Main Keywords</h3>
           <KeywordsTagInput
             keywords={mainKeywords}
@@ -57,7 +54,6 @@ const KeywordsPage = () => {
           />
         </div>
 
-        {/* Additional Keywords Section */}
         <div className="px-10 mb-8">
           <h3 className="text-md font-semibold">Additional Keywords</h3>
           <KeywordsTagInput
@@ -67,7 +63,6 @@ const KeywordsPage = () => {
           />
         </div>
 
-        {/* Excluded Keywords Section */}
         <div className="px-10 mb-8">
           <h3 className="text-md font-semibold">Excluded Keywords</h3>
           <KeywordsTagInput

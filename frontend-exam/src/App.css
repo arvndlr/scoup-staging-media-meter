@@ -1,9 +1,26 @@
 @import "tailwindcss";
+@import '@fontsource-variable/chivo-mono';
 
+/* Create a custom CSS class to use the font */
+.chivo-mono {
+  font-family: 'Chivo Mono Variable', monospace;
+}
 .custom-scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 .custom-scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* For Edge and IE */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* For WebKit browsers (Chrome, Safari, Opera) */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+  display: none;
 }

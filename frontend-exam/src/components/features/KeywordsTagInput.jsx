@@ -1,6 +1,5 @@
-// src/features/KeywordsTagInput.jsx
-
 import React, { useState } from "react";
+import { IconX } from '@tabler/icons-react';
 
 const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
   const [inputValue, setInputValue] = useState("");
@@ -8,7 +7,6 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
       e.preventDefault();
-      // Pass the updated list back to the parent component
       setKeywords([...keywords, inputValue.trim()]);
       setInputValue("");
     }
@@ -33,9 +31,39 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
           {keywords.map((keyword, index) => (
             <span
               key={index}
-              className={`flex items-center uppercase text-sm font-semibold leading-relaxed px-2 rounded-full ${tagBgClass}`}
+              className={`flex items-center uppercase text-sm font-semibold leading-relaxed px-2 py-1 rounded-full ${tagBgClass} chivo-mono`}
             >
               {keyword}
+              <button
+                type="button"
+                onClick={() => removeKeyword(index)}
+                className="ml-1 rounded-full p-1 "
+                style={{
+                  backgroundColor:
+                    tagColor === "blue"
+                      ? "#d1e0ff"
+                      : tagColor === "green"
+                      ? "#b2e8c2"
+                      : tagColor === "red"
+                      ? "#ffd8d6"
+                      : "#e5e7eb",
+                }}
+              >
+                <IconX
+                  stroke={4}
+                  className="w-2 h-2"
+                  style={{
+                    color:
+                      tagColor === "blue"
+                        ? "#001799"
+                        : tagColor === "green"
+                        ? "#009951"
+                        : tagColor === "red"
+                        ? "#c92a28"
+                        : "#6b7280",
+                  }}
+                />
+              </button>
             </span>
           ))}
         </div>
@@ -46,7 +74,7 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        className="w-full bg-transparent py-2 text-sm text-gray-500 placeholder-gray-400 focus:outline-none"
+        className="w-full bg-transparent py-2 text-sm text-[#a5a59b] placeholder-[#a5a59b] focus:outline-none"
       />
     </div>
   );

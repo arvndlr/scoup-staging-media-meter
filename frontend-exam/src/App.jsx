@@ -9,11 +9,14 @@ import PublishersPage from './pages/Onboarding/PublishersPage';
 import ReviewPage from './pages/Onboarding/ReviewPage';
 import SuccessPage from './pages/Onboarding/SuccessPage';
 import DashboardPage from './pages/DashboardPage';
+// Import the Chivo Mono font here
+import '@fontsource-variable/chivo-mono'; 
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/onboarding/account-info" element={<AccountInfoPage />} />

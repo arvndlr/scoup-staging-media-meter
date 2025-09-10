@@ -8,51 +8,51 @@ import { IconChevronRight } from "@tabler/icons-react";
 const ArticleCard = ({ article }) => {
   const [showDetails, setShowDetails] = useState(false);
   return (
-    <div className="bg-white rounded-lg shadow-md mb-8 w-full max-w-6xl mx-auto">
+    <div className="bg-white rounded-lg shadow-md mb-8 w-full max-w-6xl mx-auto archivo">
       {/* Article Header */}
       <div className="flex items-start justify-between flex-wrap px-5 py-5">
         <div className="flex items-start space-x-4 flex-shrink-0">
           <span className="text-center text-xl font-bold text-[#b4550d] bg-[#fef3c7] w-8 h-8 rounded-full">
             {article.id}
           </span>
-          <h2 className="text-xl font-semibold text-gray-800 whitespace-normal max-w-90">
+          <h2 className="text-xl font-semibold text-gray-800 whitespace-normal max-w-100">
             {article.headline}
           </h2>
         </div>
         <div className="flex items-center space-x-6 text-sm text-gray-500 mt-4 md:mt-0 flex-wrap justify-end">
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Engagement Score</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.engagementScore}
             </span>
           </div>
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Velocity</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.velocity}
             </span>
           </div>
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Comments</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.comments}
             </span>
           </div>
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Shares</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.shares}
             </span>
           </div>
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Articles</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.articles}
             </span>
           </div>
-          <div className="text-center">
+          <div className="text-center p-2 border-r border-gray-300">
             <span className="block font-medium">Est. Traffic</span>
-            <span className="block text-xl font-bold text-gray-800">
+            <span className="block text-xl font-bold text-gray-800 text-start">
               {article.metrics.estTraffic}
             </span>
           </div>
@@ -60,28 +60,36 @@ const ArticleCard = ({ article }) => {
       </div>
 
       {/* Image Grid */}
-      <div className="grid grid-cols-6 gap-2 px-5">
-        {article.images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt={`Article visual ${index + 1}`}
-            className="w-full h-24 object-cover rounded-sm"
-          />
-        ))}
+      <div className="relative">
+        <div className="grid grid-cols-8 gap-2 px-5">
+          {article.images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Article visual ${index + 1}`}
+              className="w-full h-24 object-cover rounded-sm"
+            />
+          ))}
+        </div>
+
+        {/* Fade overlay on the right */}
+        <div
+          className="pointer-events-none absolute top-0 right-0 h-full w-16 
+                  bg-gradient-to-l from-white to-transparent"
+        />
       </div>
 
       {/* Main Content (visible by default) */}
-      <div className="grid grid-cols-1 md:grid-cols-4  text-sm  leading-none text-gray-700 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-4  text-sm  leading-none text-gray-700">
         <div className="border-t border-[#f0f0ee] p-4">
           <h4 className="font-semibold text-gray-800">THE STORY</h4>
-          <p className="mt-2 text-[14px] " style={{ whiteSpace: "pre-line" }}>
+          <p className="mt-2 text-[12px] " style={{ whiteSpace: "pre-line" }}>
             {article.details.story}
           </p>
         </div>
         <div className="border-t border-l border-[#f0f0ee] p-4">
           <h4 className="font-semibold text-gray-800">WHY IT MATTERS TO YOU</h4>
-          <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+          <p className="mt-2 text-[12px]" style={{ whiteSpace: "pre-line" }}>
             {article.details.whyItMatters}
           </p>
         </div>
@@ -89,13 +97,13 @@ const ArticleCard = ({ article }) => {
           <h4 className="font-semibold text-gray-800">
             WHO IS THIS IMPORTANT TO?
           </h4>
-          <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+          <p className="mt-2 text-[12px] " style={{ whiteSpace: "pre-line" }}>
             {article.details.whoIsItImportantTo}
           </p>
         </div>
         <div className="border-t border-l border-[#f0f0ee] p-4">
           <h4 className="font-semibold text-gray-800">THE BIGGER PICTURE</h4>
-          <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+          <p className="mt-2 text-[12px] " style={{ whiteSpace: "pre-line" }}>
             {article.details.theBiggerPicture}
           </p>
         </div>
@@ -103,23 +111,32 @@ const ArticleCard = ({ article }) => {
 
       {/* Expanded Content (conditional rendering based on state) */}
       {showDetails && (
-        <div className="  pt-4">
+        <div className="">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-gray-700">
             <div className="p-4">
               <h4 className="font-semibold text-gray-800">KEY DEVELOPMENTS</h4>
-              <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+              <p
+                className="mt-2 text-[12px] "
+                style={{ whiteSpace: "pre-line" }}
+              >
                 {article.details.keyDevelopments}
               </p>
             </div>
             <div className="p-4">
               <h4 className="font-semibold text-gray-800">WHAT'S NEXT</h4>
-              <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+              <p
+                className="mt-2 text-[12px] "
+                style={{ whiteSpace: "pre-line" }}
+              >
                 {article.details.whatsNext}
               </p>
             </div>
             <div className="p-4">
               <h4 className="font-semibold text-gray-800">REPERCUSSIONS</h4>
-              <p className="mt-2 text-[14px] text-justify" style={{ whiteSpace: "pre-line" }}>
+              <p
+                className="mt-2 text-[12px] "
+                style={{ whiteSpace: "pre-line" }}
+              >
                 {article.details.repercussions}
               </p>
             </div>
@@ -127,10 +144,12 @@ const ArticleCard = ({ article }) => {
         </div>
       )}
 
-      <div className=" text-center border-t p-2 border-gray-300">
+      <div className="text-center border-t p-2 border-gray-300">
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="text-gray-800 font-semibold text-sm hover:underline flex items-center justify-center mx-auto"
+          className="text-gray-800 font-semibold text-sm flex items-center justify-center mx-auto
+               px-3 py-1 rounded-md transition-colors duration-150
+               hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black/40"
         >
           {showDetails ? <>SHOW LESS DETAILS</> : <>SHOW MORE DETAILS</>}
         </button>
@@ -162,6 +181,8 @@ const DashboardPage = () => {
         "https://images.gmanews.tv/regionaltv2023/content_images/article/resolution-for-site_2025_07_16_20_13_38.jpeg",
         "https://newsinfo.inquirer.net/files/2024/10/Rodrigo-Duterte-30October2024.jpg",
         "https://www.panaynews.net/wp-content/uploads/2019/12/Duterte.jpg",
+        "https://img.bomboradyo.com/iloilo/2025/03/DUTERTE-ICC.webp",
+        "https://static01.nyt.com/images/2024/10/28/multimedia/28philippines-duterte-qtvz/28philippines-duterte-qtvz-facebookJumbo.jpg",
       ],
       details: {
         story:
@@ -202,6 +223,8 @@ const DashboardPage = () => {
         "https://images.gmanews.tv/regionaltv2023/content_images/article/resolution-for-site_2025_07_16_20_13_38.jpeg",
         "https://newsinfo.inquirer.net/files/2024/10/Rodrigo-Duterte-30October2024.jpg",
         "https://www.panaynews.net/wp-content/uploads/2019/12/Duterte.jpg",
+        "https://img.bomboradyo.com/iloilo/2025/03/DUTERTE-ICC.webp",
+        "https://static01.nyt.com/images/2024/10/28/multimedia/28philippines-duterte-qtvz/28philippines-duterte-qtvz-facebookJumbo.jpg",
       ],
       details: {
         story:
@@ -261,7 +284,7 @@ const DashboardPage = () => {
 
   return (
     <DashboardLayout hideSidebar={false}>
-      <div className="px-8 py-4">
+      <div className="px-8 py-4 archivo">
         <h1 className="text-2xl font-bold   max-w-6xl mx-auto">
           Office of the President
         </h1>

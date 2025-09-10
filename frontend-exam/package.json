@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "^5.2.6",
+    "@fontsource-variable/chivo-mono": "^5.2.6",
     "@tabler/icons-react": "^3.34.1",
     "lucide-react": "^0.542.0",
     "papaparse": "^5.5.3",
@@ -17,7 +19,9 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.2",
     "tailwind-scrollbar-hide": "^4.0.0",
-    "vite-plugin-svgr": "^4.5.0"
+    "vite-plugin-svgr": "^4.5.0",
+    "xlsx": "^0.18.5",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

@@ -40,14 +40,18 @@ const OnboardingSteps = () => {
     { name: "Keywords", path: "keywords", icon: HashtagIcon },
     { name: "Sources", path: "sources", icon: AtSymbolIcon },
     { name: "Publishers", path: "publishers", icon: PublisherIcon },
-    { name: "Review", path: "review", icon: DocumentIcon  },
+    { name: "Review", path: "review", icon: DocumentIcon },
   ];
 
   return (
     <aside className="bg-white w-wrap min-h-screen p-4 border-r border-gray-200">
-      <div className="flex items-center space-x-2 mb-2 group"> 
+      <div className="flex items-center space-x-2 mb-2 group">
         <img src={Logo} alt="Logo" className="h-8 w-8 group-hover:hidden" />
-        <img src={LogoHover} alt="Hover Logo" className="h-8 w-auto hidden group-hover:block" />
+        <img
+          src={LogoHover}
+          alt="Hover Logo"
+          className="h-8 w-auto hidden group-hover:block"
+        />
       </div>
       <nav className="space-y-1">
         {steps.map((step) => {
@@ -56,17 +60,19 @@ const OnboardingSteps = () => {
           const isComplete = status === "complete";
 
           return (
-            <div key={step.name} className="flex items-center space-x-4 group">
+            <div
+              key={step.name}
+              className={`flex rounded-lg items-center space-x-4 group ${
+                isComplete
+                  ? "bg-white-900 text-white-900"
+                  : isActive
+                  ? "bg-[#f0eee6] text-white"
+                  : "bg-white-200 text-gray-500"
+              }`}
+            >
               <div
                 className={`
                   w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center
-                  ${
-                    isComplete
-                      ? "bg-white-900 text-white-900"
-                      : isActive
-                      ? "bg-gray-200 text-white"
-                      : "bg-white-200 text-gray-500"
-                  }
                 `}
               >
                 {isComplete ? (
@@ -80,8 +86,8 @@ const OnboardingSteps = () => {
                   to={`/onboarding/${step.path}`}
                   className={`
                     whitespace-nowrap 
-                    text-sm font-semibold 
-                    ${isActive ? "text-black" : "text-gray-500"} 
+                    text-sm archivo text-gray-900
+                    ${isActive ? "text-gray-900 font-bold" : "text-gray-900"} 
                   `}
                 >
                   {step.name}

@@ -14,15 +14,15 @@ const OnboardingSuccess = () => {
   };
 
   return (
-    <div className="h-screen p-4 flex-1 flex flex-col items-center justify-center">
-      <div className="flex w-sm flex-col rounded-2xl items-center justify-center text-center p-6">
+    <div className="h-screen p-4 flex-1 flex flex-col items-center justify-center archivo">
+      <div className="flex w-lg flex-col rounded-2xl items-center justify-center text-center p-6">
         <img src={Logo} alt="Logo" className="h-10 w-10" />
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           You're all set!
         </h1>
-        <p className="text-gray-600 text-xs mb-8 max-w-lg">
-          Your account is ready. Start creating engaging newsletters. Connect
-          with your audience and grow your brand!
+        <p className="text-gray-600 text-sm mb-4 max-w-lg">
+          Your account is ready. Start creating engaging newsletters.<br/>
+          Connect with your audience and grow your brand!
         </p>
         <button
           onClick={handleGoToDashboard}

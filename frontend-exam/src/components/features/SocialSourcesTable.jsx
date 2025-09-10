@@ -35,9 +35,8 @@ const SocialSourcesTable = ({ sources, setSources }) => {
             {tableHeaders.map((header, index) => (
               <th
                 key={header}
-                className={`px-4 py-2 font-bold text-gray-600 ${
-                  index === tableHeaders.length - 1 ? "rounded-tr-lg" : ""
-                }`}
+                className={`px-4 py-2               <th className="flex-1 py-3 text-left text-xs font-bold text-black-500 uppercase tracking-wider">
+ ${index === tableHeaders.length - 1 ? "rounded-tr-lg" : ""}`}
               >
                 <div className="flex items-center space-x-1">
                   <span>{header}</span>

@@ -4,35 +4,29 @@ import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import Card from "../../components/common/Card";
 import OnboardingLayout from "../../components/layout/OnboardingLayout";
+import { useOnboardingStore } from "../../state/onboardingStore";
 
 const AccountInfoPage = () => {
   const navigate = useNavigate();
+  const setAccount = useOnboardingStore((s) => s.setAccount);
 
-  // 1. Add state to hold form data
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     jobTitle: "",
   });
 
-  // Handle input changes and update state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((p) => ({ ...p, [name]: value }));
   };
 
   const handleNext = (e) => {
-    e.preventDefault(); // Prevents the default form submission (page reload)
-
-    // Check if all required fields are filled
+    e.preventDefault();
     if (formData.firstName && formData.lastName && formData.jobTitle) {
-      console.log("Form Data:", formData);
-      // In a real application, you would save this data here (e.g., via an API call)
-
-      // Navigate to the next step
+      setAccount(formData); // persist in session store
       navigate("/onboarding/keywords");
     } else {
-      // Optional: Provide user feedback if validation fails
       alert("Please fill in all required fields.");
     }
   };
@@ -46,10 +40,9 @@ const AccountInfoPage = () => {
             Create your account to get started with your newsletter journey
           </p>
           <form className="space-y-2" onSubmit={handleNext}>
-            {/* Connect inputs to the component's state */}
             <Input
               label="First Name"
-              name="firstName" // Add a name attribute to identify the input
+              name="firstName"
               required
               type="text"
               placeholder="Enter your first name"
@@ -59,7 +52,7 @@ const AccountInfoPage = () => {
             />
             <Input
               label="Last Name"
-              name="lastName" // Add a name attribute
+              name="lastName"
               required
               type="text"
               placeholder="Enter your last name"
@@ -69,7 +62,7 @@ const AccountInfoPage = () => {
             />
             <Input
               label="Job Title"
-              name="jobTitle" // Add a name attribute
+              name="jobTitle"
               required
               type="text"
               placeholder="Enter your job title"
