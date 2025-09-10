@@ -2,6 +2,27 @@
 
 This is a React-based frontend application for managing media sources, publishers, and onboarding users. Built with Vite, Tailwind CSS, and modern React best practices.
 
+## Screenshots
+
+### Authentication
+
+![Login Page](src/assets/scoup/login.png)
+![Signup Page](src/assets/scoup/signup.png)
+
+### Onboarding Flow
+
+![Account Info](src/assets/scoup/account-info.png)
+![Keywords Setup](src/assets/scoup/keywords.png)
+![Publishers Page](src/assets/scoup/publisherspage.png)
+![Sources Page](src/assets/scoup/sourcepage.png)
+![Upload Modal](src/assets/scoup/upload.png)
+![Review Page](src/assets/scoup/review.png)
+![Success Page](src/assets/scoup/success.png)
+
+### Dashboard
+
+![Dashboard](src/assets/scoup/dashboard.png)
+
 ## Features
 
 - User onboarding flow with multiple steps

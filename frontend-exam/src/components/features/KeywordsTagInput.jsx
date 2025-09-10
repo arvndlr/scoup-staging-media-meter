@@ -31,7 +31,7 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
           {keywords.map((keyword, index) => (
             <span
               key={index}
-              className={`flex items-center uppercase text-sm font-semibold leading-relaxed px-2 py-1 rounded-full ${tagBgClass} chivo-mono`}
+              className={`flex items-center uppercase text-xs font-semibold leading-relaxed px-2 py-1 rounded-full ${tagBgClass} chivo-mono`}
             >
               {keyword}
               <button

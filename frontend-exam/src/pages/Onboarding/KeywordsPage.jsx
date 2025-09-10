@@ -42,10 +42,10 @@ const KeywordsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-3xl h-150 min-h-3xl mx-auto bg-white p-6 pb-8 rounded-3xl shadow-md space-y-6">
+      <div className="max-w-3xl  min-h-sm mx-auto bg-white p-6 pb-8 rounded-3xl shadow-md space-y-6">
         <span className="text-md">Keywords Preview</span>
 
-        <div className="px-10 mt-8 mb-8">
+        <div className="px-10 mt-2">
           <h3 className="text-md font-semibold">Main Keywords</h3>
           <KeywordsTagInput
             keywords={mainKeywords}
