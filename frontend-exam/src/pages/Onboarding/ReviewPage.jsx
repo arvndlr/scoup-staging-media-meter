@@ -71,7 +71,7 @@ const ReviewPage = () => {
           </div>
           <Button
             onClick={handleComplete}
-            className="bg-gray-800 text-white max-w-30 font-semibold py-2 px-6 rounded-md shadow-md hover:bg-gray-900 transition-colors duration-200"
+            className="bg-[#121212] text-white max-w-30 font-semibold py-2 px-6 rounded-md shadow-md hover:bg-bg-[#121212] transition-colors duration-200"
           >
             Complete
           </Button>
@@ -83,7 +83,7 @@ const ReviewPage = () => {
             <h3 className="text-lg font-semibold mb-4 text-gray-800">
               Account Information
             </h3>
-            <div className="grid grid-cols-3 gap-4 text-sm text-gray-600">
+            <div className="flex flew-row gap-4 text-sm text-gray-600">
               <div className="flex flex-col">
                 <span className="font-medium text-gray-500">Name</span>
                 <span>{accountInfo.name}</span>
@@ -117,7 +117,7 @@ const ReviewPage = () => {
                           {source.icon}
                         </span>
                       ) : (
-                        <source.icon className="w-5 h-5 text-gray-500" />
+                        <source.icon className="w-6 h-6 text-gray-500" />
                       )}
                     </span>
                     <span>

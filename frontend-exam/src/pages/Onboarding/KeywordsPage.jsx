@@ -38,7 +38,7 @@ const KeywordsPage = () => {
           <Button
             type="button"
             onClick={handleComplete}
-            className="bg-gray-200 text-white-800 max-w-30 hover:bg-[#141413]"
+            className="bg-[#cac9c7] text-white-800 max-w-30 hover:bg-[#141413]"
           >
             Complete
           </Button>

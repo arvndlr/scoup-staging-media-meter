@@ -19,9 +19,9 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
   };
 
   const colorClasses = {
-    blue: "bg-blue-100 text-blue-800",
-    green: "bg-green-50 text-green-800",
-    red: "bg-red-50 text-red-800",
+    blue: "bg-[#eff6ff] text-[#001799]",
+    green: "bg-[#ebffee] text-[#009951]",
+    red: "bg-[#fee9e7] text-[#c92a28]",
   };
 
   const tagBgClass = colorClasses[tagColor] || "bg-gray-200 text-gray-800";
@@ -33,7 +33,7 @@ const KeywordsTagInput = ({ keywords, setKeywords, tagColor = "blue" }) => {
           {keywords.map((keyword, index) => (
             <span
               key={index}
-              className={`flex items-center uppercase text-sm font-semibold px-1 rounded-sm ${tagBgClass}`}
+              className={`flex items-center uppercase text-sm font-semibold leading-relaxed px-2 rounded-full ${tagBgClass}`}
             >
               {keyword}
             </span>

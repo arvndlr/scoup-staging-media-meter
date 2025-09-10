@@ -78,9 +78,9 @@ const SourcesPage = () => {
               </button>
               <button
                 onClick={handleNext}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 px-10 ${
                   canProceed
-                    ? "bg-gray-800 text-white hover:bg-gray-900"
+                    ? "bg-[#cac9c7] text-white hover:text-[#ffba49] hover:bg-[#121212]"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
                 disabled={!canProceed}

@@ -39,7 +39,7 @@ const AccountInfoPage = () => {
 
   return (
     <OnboardingLayout>
-      <div className="w-full h-full flex-1 flex flex-col items-center justify-center">
+      <div className="w-full h-full flex-1 flex flex-col items-center justify-center bg-[#faf9f5]">
         <Card>
           <h2 className="text-xl font-bold text-left">Account Information</h2>
           <p className="text-left text-sm text-black-600 mb-4">
@@ -80,7 +80,7 @@ const AccountInfoPage = () => {
             <div className="mt-8">
               <Button
                 type="submit"
-                className="w-full bg-black hover:bg-gray-800"
+                className="w-full bg-[#141413] hover:bg-[#121212] hover:text-[#ffba49]"
               >
                 Next
               </Button>

@@ -5,10 +5,17 @@ import Input from "../../components/common/Input";
 import Logo from "../../assets/icons/logo.png";
 import dummyDb from "../../db/db.json";
 
+// Import both eye icons
+import { IconEye, IconEyeClosed } from '@tabler/icons-react';
+
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  // State for confirm password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const isFormValid = email !== "" && password !== "" && confirmPassword !== "";
@@ -45,8 +52,16 @@ const SignUpPage = () => {
     navigate("/onboarding/account-info");
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex flex-col min-h-screen items-center justify-center bg-[#f9f8f4]">
       <div>
         <div className="flex justify-center">
           <img src={Logo} alt="Logo" className="h-10 w-10" />
@@ -58,7 +73,7 @@ const SignUpPage = () => {
           Get instant access and start creating today.
         </p>
       </div>
-      <div className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-xl">
+      <div className="w-full max-w-sm rounded-3xl bg-[#faf9f5] p-6 shadow-xl">
         <form className="space-y-3" onSubmit={handleSubmit}>
           <Input
             label="Email address"
@@ -69,28 +84,54 @@ const SignUpPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="p-2 w-full bg-white"
           />
-          <Input
-            label="Password"
-            type="password"
-            required="required"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="p-2 w-full bg-white"
-          />
-          <Input
-            label="Confirm Password"
-            type="password"
-            required="required"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="p-2 w-full bg-white"
-          />
+          <div className="relative">
+            <Input
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              required="required"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="p-2 w-full pr-10 bg-white"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute inset-y-0 right-0 pr-3 pt-6 flex items-center text-gray-400"
+            >
+              {showPassword ? (
+                <IconEyeClosed stroke={2} className="h-5 w-5" />
+              ) : (
+                <IconEyeClosed stroke={2} className="h-5 w-5" />
+              )}
+            </button>
+          </div>
+          <div className="relative">
+            <Input
+              label="Confirm Password"
+              type={showConfirmPassword ? "text" : "password"}
+              required="required"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="p-2 w-full pr-10 bg-white"
+            />
+            <button
+              type="button"
+              onClick={toggleConfirmPasswordVisibility}
+              className="absolute inset-y-0 right-0 pr-3 pt-6 flex items-center text-gray-400"
+            >
+              {showConfirmPassword ? (
+                <IconEyeClosed stroke={2} className="h-5 w-5" />
+              ) : (
+                <IconEyeClosed stroke={2} className="h-5 w-5" />
+              )}
+            </button>
+          </div>
           <Button
             type="submit"
             disabled={!isFormValid}
-            className={`w-full ${isFormValid ? "bg-black hover:bg-gray-800" : "bg-[#CAC9C7]"}`}
+            className={`w-full ${isFormValid ? "bg-black hover:bg-[#121212] hover:text-[#ffba49]" : "bg-[#CAC9C7]"}`}
           >
             CREATE ACCOUNT
           </Button>

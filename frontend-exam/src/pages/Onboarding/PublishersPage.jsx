@@ -90,10 +90,10 @@ const PublishersPage = () => {
             </button>
             <button
               onClick={handleNext}
-              className={`py-2 px-4 h-10 rounded-md shadow-sm transition-colors duration-200 ${
+              className={`py-2 px-8 bg-[#cac9c7] h-10 rounded-md shadow-sm transition-colors duration-200${
                 canProceed
-                  ? "bg-gray-800 text-white hover:bg-gray-900"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  ? "bg-[#cac9c7] text-white hover:text-[#ffba49] hover:bg-[#121212]"
+                  : "bg-[#cac9c7] text-gray-500 cursor-not-allowed"
               }`}
               disabled={!canProceed}
             >
