@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({ children }) => {
   return (
-    <div className="min-w-sm p-6 bg-white rounded-3xl shadow-xl">
+    <div className="min-w-[494px] p-[28px] bg-white rounded-4xl shadow-card gap-6">
       {children}
     </div>
   );

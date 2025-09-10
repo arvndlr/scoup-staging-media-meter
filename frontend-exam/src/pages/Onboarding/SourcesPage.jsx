@@ -65,7 +65,7 @@ const SourcesPage = () => {
   return (
     <OnboardingLayout>
       <div className="p-4 flex-1 flex flex-col items-center justify-center">
-        <div className="min-w-5xl pb-2 px-10 rounded-lg">
+        <div className="min-w-5xl pb-2 rounded-lg">
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-semibold text-gray-800">Sources</h1>
             <div className="flex space-x-2">
@@ -90,7 +90,7 @@ const SourcesPage = () => {
             </div>
           </div>
         </div>
-        <SocialSourcesTable sources={sources} setSources={setSources} />
+        <SocialSourcesTable sources={sources} setSources={setSources}/>
         <UploadModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}

@@ -5,7 +5,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import OnboardingLayout from "../../components/layout/OnboardingLayout";
 import Button from "../../components/common/Button";
-
+import YouTube from "../../assets/icons/youtube.svg?react";
+import Reddit from "../../assets/icons/reddit.svg?react";
+import Facebook from "../../assets/icons/facebook.svg?react";
+import XTwitter from "../../assets/icons/x.svg?react";
+import News from "../../assets/icons/news.svg?react";
+import CheckBlue from "../../assets/icons/check-blue.svg?react";
+import Plus from "../../assets/icons/plus.svg?react";
+import Cross from "../../assets/icons/cross.svg?react";
 const ReviewPage = () => {
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
@@ -19,11 +26,11 @@ const ReviewPage = () => {
   };
 
   const connectedSources = [
-    { name: "X (Twitter) Influencers", count: 54, icon: "X" },
-    { name: "Facebook Influencers", count: 36, icon: "Facebook" },
-    { name: "Reddit Influencers", count: 29, icon: "Reddit" },
-    { name: "Youtube Influencers", count: 12, icon: "YouTube" },
-    { name: "Publishers", count: 67, icon: "P" },
+    { name: "X (Twitter) Influencers", count: 54, icon: XTwitter },
+    { name: "Facebook Influencers", count: 36, icon: Facebook },
+    { name: "Reddit Influencers", count: 29, icon: Reddit },
+    { name: "Youtube Influencers", count: 12, icon: YouTube },
+    { name: "Publishers", count: 67, icon: News },
   ];
 
   const keywords = {
@@ -52,86 +59,101 @@ const ReviewPage = () => {
 
   return (
     <OnboardingLayout>
-      <div className="flex w-140 justify-between items-center mb-8">
-        <div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800">
-            Review and Complete
-          </h1>
-          <p className="text-sm text-gray-500">
-            Make sure everything's good to go
-          </p>
+      <div className="p-4 flex-1 flex flex-col items-center justify-center">
+        <div className="flex w-140 justify-between items-center mb-8">
+          <div>
+            <h1 className="text-xl md:text-2xl font-bold text-gray-800">
+              Review and Complete
+            </h1>
+            <p className="text-sm text-gray-500">
+              Make sure everything's good to go
+            </p>
+          </div>
+          <Button
+            onClick={handleComplete}
+            className="bg-gray-800 text-white max-w-30 font-semibold py-2 px-6 rounded-md shadow-md hover:bg-gray-900 transition-colors duration-200"
+          >
+            Complete
+          </Button>
         </div>
-        <Button
-          onClick={handleComplete}
-          className="bg-gray-800 text-white max-w-30 font-semibold py-2 px-6 rounded-md shadow-md hover:bg-gray-900 transition-colors duration-200"
-        >
-          Complete
-        </Button>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
-        {/* Account Information Section */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">
-            Account Information
-          </h3>
-          <div className="grid grid-cols-3 gap-4 text-sm text-gray-600">
-            <div className="flex flex-col">
-              <span className="font-medium text-gray-500">Name</span>
-              <span>{accountInfo.name}</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-medium text-gray-500">Email</span>
-              <span>{accountInfo.email}</span>
-            </div>
-            <div className="flex flex-col col-span-1">
-              <span className="font-medium text-gray-500">Job Title</span>
-              <span>{accountInfo.jobTitle}</span>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+          {/* Account Information Section */}
+          <div className="bg-white rounded-lg shadow-md p-4">
+            <h3 className="text-lg font-semibold mb-4 text-gray-800">
+              Account Information
+            </h3>
+            <div className="grid grid-cols-3 gap-4 text-sm text-gray-600">
+              <div className="flex flex-col">
+                <span className="font-medium text-gray-500">Name</span>
+                <span>{accountInfo.name}</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-medium text-gray-500">Email</span>
+                <span>{accountInfo.email}</span>
+              </div>
+              <div className="flex flex-col col-span-1">
+                <span className="font-medium text-gray-500">Job Title</span>
+                <span>{accountInfo.jobTitle}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          {/* Connected Social Sources Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800">
-              Connected Social Sources
-            </h3>
-            <ul className="space-y-3">
-              {connectedSources.map((source, index) => (
-                <li
-                  key={index}
-                  className="flex items-center space-x-3 text-sm text-gray-700"
-                >
-                  <span className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold text-xs">
-                    {source.icon}
-                  </span>
-                  <span>
-                    {source.count} {source.name}
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {/* Connected Social Sources Section */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                Connected Social Sources
+              </h3>
+              <ul className="space-y-2">
+                {connectedSources.map((source, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center space-x-3 text-sm text-gray-700"
+                  >
+                    <span className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-200">
+                      {/* Conditional rendering for icons and text */}
+                      {typeof source.icon === "string" ? (
+                        <span className="text-gray-500 font-bold text-xs">
+                          {source.icon}
+                        </span>
+                      ) : (
+                        <source.icon className="w-5 h-5 text-gray-500" />
+                      )}
+                    </span>
+                    <span>
+                      {source.count} {source.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Keywords Section */}
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                Keywords
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-center space-x-3 text-sm text-gray-700">
+                  <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                    <CheckBlue className="w-5 h-5" />
+                  </div>
+                  <span>{keywords.main} Main Keywords</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Keywords Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800">
-              Keywords
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3 text-sm text-gray-700">
-                <span className="text-green-500 font-bold text-lg">⁺</span>
-                <span>{keywords.main} Main Keywords</span>
-              </li>
-              <li className="flex items-center space-x-3 text-sm text-gray-700">
-                <span className="text-blue-500 font-bold text-lg">⁺</span>
-                <span>{keywords.additional} Additional Keywords</span>
-              </li>
-              <li className="flex items-center space-x-3 text-sm text-gray-700">
-                <span className="text-red-500 font-bold text-lg">ˣ</span>
-                <span>{keywords.excluded} Excluded Keywords</span>
-              </li>
-            </ul>
+                <li className="flex items-center space-x-3 text-sm text-gray-700">
+                  <div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+                    <Plus className="w-5 h-5" />
+                  </div>
+                  <span>{keywords.additional} Additional Keywords</span>
+                </li>
+                <li className="flex items-center space-x-3 text-sm text-gray-700">
+                  <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
+                    <Cross className="w-3 h-3" />
+                  </div>
+                  <span>{keywords.excluded} Excluded Keywords</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

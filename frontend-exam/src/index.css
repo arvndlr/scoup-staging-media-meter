@@ -3,3 +3,11 @@
 body {
   background-color: #FAF9F5;
 }
+
+.custom-scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.custom-scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

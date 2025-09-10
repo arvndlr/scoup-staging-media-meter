@@ -27,7 +27,7 @@ const SocialSourcesTable = ({ sources, setSources }) => {
   };
 
   return (
-    <div className="overflow-x-auto max-w-5xl">
+    <div className="overflow-x-auto max-w-5xl min-w-5xl">
       <Table>
         <thead>
           <tr className="bg-[#edece5]">
@@ -110,8 +110,8 @@ const SocialSourcesTable = ({ sources, setSources }) => {
           })}
         </tbody>
       </Table>
-      <div className="fixed w-4xl bottom-0 left-auto right-auto p-4 bg-white shadow-lg flex items-center justify-start border-t border-gray-200">
-        <div className="flex items-center space-x-2 text-gray-500 text-sm">
+      <div className="fixed w-5xl bottom-0 left-auto right-auto px-4 py-2 bg-white shadow-lg flex items-center justify-start border-t border-gray-200 rounded-tl-lg rounded-tr-lg">
+        <div className="flex items-center space-x-2 text-gray-500 text-sm ">
           <button
             onClick={handleAddRows}
             className="font-semibold text-gray-500 hover:text-gray-900"
@@ -125,7 +125,7 @@ const SocialSourcesTable = ({ sources, setSources }) => {
             onChange={(e) => setRowsToAdd(parseInt(e.target.value))}
             className="w-16 p-1 border border-gray-300 rounded-md text-center"
           />
-          <span>more rows</span>
+          <span className="text-gray-500 ml-2">more rows</span>
         </div>
       </div>
     </div>

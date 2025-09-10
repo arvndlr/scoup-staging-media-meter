@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/icons/logo.png";
-
 // Use the ?react suffix to import SVGs as components
 import UserIcon from "../../assets/icons/user.svg?react";
 import HashtagIcon from "../../assets/icons/hashtag.svg?react";
