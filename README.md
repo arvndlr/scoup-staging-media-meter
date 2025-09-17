@@ -6,22 +6,22 @@ This is a React-based frontend application for managing media sources, publisher
 
 ### Authentication
 
-![Login Page](src/assets/scoup/login.png)
-![Signup Page](src/assets/scoup/signup.png)
+![Login Page](/frontend-exam/src/assets/scoup/login.png)
+![Signup Page](/frontend-exam/src/assets/scoup/signup.png)
 
 ### Onboarding Flow
 
-![Account Info](src/assets/scoup/account-info.png)
-![Keywords Setup](src/assets/scoup/keywords.png)
-![Publishers Page](src/assets/scoup/publisherspage.png)
-![Sources Page](src/assets/scoup/sourcepage.png)
-![Upload Modal](src/assets/scoup/upload.png)
-![Review Page](src/assets/scoup/review.png)
-![Success Page](src/assets/scoup/success.png)
+![Account Info](/frontend-exam/src/assets/scoup/account-info.png)
+![Keywords Setup](/frontend-exam/src/assets/scoup/keywords.png)
+![Publishers Page](/frontend-exam/src/assets/scoup/publisherspage.png)
+![Sources Page](/frontend-exam/src/assets/scoup/sourcepage.png)
+![Upload Modal](/frontend-exam/src/assets/scoup/upload.png)
+![Review Page](/frontend-exam/src/assets/scoup/review.png)
+![Success Page](/frontend-exam/src/assets/scoup/success.png)
 
 ### Dashboard
 
-![Dashboard](src/assets/scoup/dashboard.png)
+![Dashboard](/frontend-exam/src/assets/scoup/dashboard.png)
 
 ## Features
 
